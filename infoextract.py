@@ -148,7 +148,7 @@ def checkAccuracy():
             filecount += 1
         count+=1
 
-    #print('incident accuracy = ', acc[1]/filecount)
+    print('incident accuracy = ', acc[1]/filecount)
     print('weapon accuracy = ', acc[2] / filecount)
 
 

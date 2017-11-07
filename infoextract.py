@@ -32,8 +32,8 @@ def findIncident(story,obj):
     for i in range(5):
         for j in incidents_synonyms[i]:
             score[i]+=story_words.count(j)
-            if i == 2:
-                print(j,story_words.count(j))
+            #if i == 2:
+                #print(j,story_words.count(j))
     max = 0
     bestindex = 0   
     for i in range(5):

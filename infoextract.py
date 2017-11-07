@@ -5,12 +5,12 @@ from Template import Template
 from nltk.corpus import wordnet as wn
 from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
-ps = PorterStemmer()
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 
 st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
 
+ps = PorterStemmer()
 
 
 
@@ -21,13 +21,21 @@ st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-
 stories=[]
 story_objects=[]
 
+def findIncident(story,obj):
+	incidents = ['arson','attack','bombing','kidnapping','robbery']
+	incidents_synonyms = []
+	for i in range(len(incidents)):
+		incidents_synonyms.append(findSynonym(incidents[i]))
+	story_words = word_tokenize(story)
+	for 
+
 def findSynonym(word):
 	synonyms = []
 	antonyms = []
 
-	for syn in wordnet.synsets(word):
+	for syn in wn.synsets(word):
 	    for l in syn.lemmas():
-	        synonyms.append(ps.stem(l.name()))
+	        synonyms.append(l.name())
 	        if l.antonyms():
 	            antonyms.append(l.antonyms()[0].name())
 	return synonyms            
@@ -48,6 +56,10 @@ def extractInfo(textfile):
 			text += line
 	if len(text)!=0:
 		stories.append(text)
+
+	for i in range(len(stories)):
+		findIncident(stories[i],story_objects[i])
+
 
 	#   Stanford NER Tagger
 	#print(st.tag(word_tokenize(stories[0])))	

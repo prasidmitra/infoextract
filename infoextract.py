@@ -22,69 +22,68 @@ stories=[]
 story_objects=[]
 
 def findIncident(story,obj):
-	incidents = ['arson','attack','bombing','kidnapping','robbery']
-	incidents_synonyms = []
-	for i in range(len(incidents)):
-		incidents_synonyms.append(findSynonym(incidents[i]))
-	story_words = word_tokenize(story)
-	for 
+    incidents = ['arson','attack','bombing','kidnapping','robbery']
+    incidents_synonyms = []
+    for i in range(len(incidents)):
+        incidents_synonyms.append(findSynonym(incidents[i]))
+    story_words = word_tokenize(story)
 
 def findSynonym(word):
-	synonyms = []
-	antonyms = []
+    synonyms = []
+    antonyms = []
 
-	for syn in wn.synsets(word):
-	    for l in syn.lemmas():
-	        synonyms.append(l.name())
-	        if l.antonyms():
-	            antonyms.append(l.antonyms()[0].name())
-	return synonyms            
+    for syn in wn.synsets(word):
+        for l in syn.lemmas():
+            synonyms.append(l.name())
+            if l.antonyms():
+                antonyms.append(l.antonyms()[0].name())
+    return synonyms            
 
 def extractInfo(textfile):
-	f = open(textfile,'r')
-	text = ""
-	for line in f:
-		p = re.match('^((DEV-MUC3|TST1-MUC3|TST2-MUC4)-[0-9]{4})',line)
-		if p:
-			if len(text)!=0:
-				stories.append(text)
-				text=""
-			obj = Template(p.group(),'','','','','','')
-			story_objects.append(obj)
+    f = open(textfile,'r')
+    text = ""
+    for line in f:
+        p = re.match('^((DEV-MUC3|TST1-MUC3|TST2-MUC4)-[0-9]{4})',line)
+        if p:
+            if len(text)!=0:
+                stories.append(text)
+                text=""
+            obj = Template(p.group(),'','','','','','')
+            story_objects.append(obj)
 
-		else: 
-			text += line
-	if len(text)!=0:
-		stories.append(text)
+        else: 
+            text += line
+    if len(text)!=0:
+        stories.append(text)
 
-	for i in range(len(stories)):
-		findIncident(stories[i],story_objects[i])
-
-
-	#   Stanford NER Tagger
-	#print(st.tag(word_tokenize(stories[0])))	
+    for i in range(len(stories)):
+        findIncident(stories[i],story_objects[i])
 
 
-	# for i in range(len(stories)):
-	# 	print(story_objects[i].id+'\n----------')
-	# 	print(ne_chunk(pos_tag(word_tokenize(stories[i]))))	
+    #   Stanford NER Tagger
+    #print(st.tag(word_tokenize(stories[0])))   
 
-	# doc = nlp(stories[0])
-	# for i in doc.ents:
-	#     print(i.label_, i.text)
-	# for i in doc:
-	# 	print(i.text, i.ent_iob,i.ent_type_)   
 
-		
+    # for i in range(len(stories)):
+    #   print(story_objects[i].id+'\n----------')
+    #   print(ne_chunk(pos_tag(word_tokenize(stories[i])))) 
+
+    # doc = nlp(stories[0])
+    # for i in doc.ents:
+    #     print(i.label_, i.text)
+    # for i in doc:
+    #   print(i.text, i.ent_iob,i.ent_type_)   
+
+        
 
 
 
 def main():
-	#args=sys.argv
-	#textfile = './developset/texts/DEV-MUC3-0006'
-	textfile = './developset/texts/sample.txt'
+    #args=sys.argv
+    #textfile = './developset/texts/DEV-MUC3-0006'
+    textfile = './developset/texts/sample.txt'
 
-	extractInfo(textfile)
+    extractInfo(textfile)
 
 if __name__ == '__main__':
-	main()
+    main()

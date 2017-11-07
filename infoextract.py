@@ -8,9 +8,10 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 from pathlib import Path
+from findWeapon import findWeapon
 
 #Change the path to the stanford ner
-st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
+#st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
 
 ps = PorterStemmer()
 
@@ -32,8 +33,8 @@ def findIncident(story,obj):
     for i in range(5):
         for j in incidents_synonyms[i]:
             score[i]+=story_words.count(j)
-            if i == 2:
-                print(j,story_words.count(j))
+            #if i == 2:
+            #    print(j,story_words.count(j))
     max = 0
     bestindex = 0   
     for i in range(5):
@@ -78,7 +79,8 @@ def extractInfo(textfile):
         stories.append(text)
 
     for i in range(len(stories)):
-        findIncident(stories[i],story_objects[i])   
+        findIncident(stories[i],story_objects[i])
+        test = findWeapon(stories[i], story_objects[i])
     return story_objects[0]   
 
 
@@ -122,12 +124,33 @@ def checkAccuracy():
             incident_pred = obj.incident
             if incident_pred == incident_actual:
                 acc[1]+=1
-            print (obj.id,incident_pred, incident_actual)
-            filecount+=1        
+            #print (obj.id,incident_pred, incident_actual)
+            #filecount+=1
 
+            # weapon
+            weapon_actual = ''
+
+            f = open(ansfile)
+            for line in f:
+                nline = line.strip().split()
+                if nline[0] == 'WEAPON:':
+                    wpL = ''
+                    for i in nline[1:]:
+                        wpL += i.lower() + ' '
+                    weapon_actual = wpL.strip()
+                    break
+            f.close()
+
+            weapon_pred = obj.weapon
+            if weapon_pred == weapon_actual:
+                acc[2] += 1
+            print(obj.id, weapon_pred, weapon_actual)
+            filecount += 1
         count+=1
 
-    print('incident accuracy = ', acc[1]/filecount)    
+    #print('incident accuracy = ', acc[1]/filecount)
+    print('weapon accuracy = ', acc[2] / filecount)
+
 
 
 

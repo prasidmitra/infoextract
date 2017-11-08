@@ -5,11 +5,12 @@
 
 ID:             DEV-MUC3-0006
 INCIDENT:       ATTACK
-WEAPON:         -
+WEAPON:         ARTILLERY FIRE
+                EXPLOSIONS
 PERP_INDIV:     -
 PERP_ORG:       -
-TARGET:         STORES
-                ELECTRIC TOWERS
+TARGET:         ELECTRIC TOWERS
+                REBEL POSITIONS
 VICTIM:         -
 
       SYSTEM OUTPUT 
@@ -28,22 +29,22 @@ VICTIM:         -
 
                 RECALL             PRECISION          F-MEASURE
 Incident        1.00 (1/1)	   1.00 (1/1)         1.00
-Weapons         0.00 (0/0)	   0.00 (0/2)         0.00
+Weapons         1.00 (2/2)	   1.00 (2/2)         1.00
 Perp_Ind        0.00 (0/0)	   0.00 (0/0)         0.00
 Perp_Org        0.00 (0/0)	   0.00 (0/0)         0.00
-Targets         0.50 (1/2)	   0.50 (1/2)         0.50
+Targets         1.00 (2/2)	   1.00 (2/2)         1.00
 Victims         0.00 (0/0)	   0.00 (0/0)         0.00
 --------        --------------     --------------     ----
-TOTAL           0.67 (2/3)	   0.40 (2/5)         0.50
+TOTAL           1.00 (5/5)	   1.00 (5/5)         1.00
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
       ANSWER KEY 
 
 ID:             DEV-MUC3-0012
-INCIDENT:       ATTACK
+INCIDENT:       BOMBING
 WEAPON:         -
-PERP_INDIV:     SUBVERSIVES / GROUP OF SUBVERSIVES
+PERP_INDIV:     -
 PERP_ORG:       -
 TARGET:         -
 VICTIM:         ENRIQUE LOPEZ ALBUJAR
@@ -61,14 +62,14 @@ VICTIM:         ENRIQUE LOPEZ ALBUJAR
      SCORES for DEV-MUC3-0012
 
                 RECALL             PRECISION          F-MEASURE
-Incident        0.00 (0/1)	   0.00 (0/1)         0.00
+Incident        1.00 (1/1)	   1.00 (1/1)         1.00
 Weapons         0.00 (0/0)	   0.00 (0/0)         0.00
-Perp_Ind        0.00 (0/1)	   0.00 (0/0)         0.00
+Perp_Ind        0.00 (0/0)	   0.00 (0/0)         0.00
 Perp_Org        0.00 (0/0)	   0.00 (0/0)         0.00
 Targets         0.00 (0/0)	   0.00 (0/0)         0.00
 Victims         1.00 (1/1)	   1.00 (1/1)         1.00
 --------        --------------     --------------     ----
-TOTAL           0.33 (1/3)	   0.50 (1/2)         0.40
+TOTAL           1.00 (2/2)	   1.00 (2/2)         1.00
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -77,13 +78,10 @@ TOTAL           0.33 (1/3)	   0.50 (1/2)         0.40
 ID:             DEV-MUC3-0014
 INCIDENT:       ATTACK
 WEAPON:         MACHINE-GUN
-PERP_INDIV:     MEMBERS OF THE ARMED FORCES / MEMBERS OF THE ARMED FORCES
-                MORE THAN SEVEN PEOPLE
-                TWO DIFFERENT GROUPS
-PERP_ORG:       ARMED FORCES
+PERP_INDIV:     MULTIPLE CRIME
+PERP_ORG:       -
 TARGET:         -
-VICTIM:         JESUITS / CLERGYMEN
-                MAIDS
+VICTIM:         CLERGYMEN
 
       SYSTEM OUTPUT 
 
@@ -100,25 +98,25 @@ VICTIM:         CLERGYMEN
                 RECALL             PRECISION          F-MEASURE
 Incident        1.00 (1/1)	   1.00 (1/1)         1.00
 Weapons         1.00 (1/1)	   1.00 (1/1)         1.00
-Perp_Ind        0.00 (0/3)	   0.00 (0/1)         0.00
-Perp_Org        0.00 (0/1)	   0.00 (0/0)         0.00
+Perp_Ind        1.00 (1/1)	   1.00 (1/1)         1.00
+Perp_Org        0.00 (0/0)	   0.00 (0/0)         0.00
 Targets         0.00 (0/0)	   0.00 (0/0)         0.00
-Victims         0.50 (1/2)	   1.00 (1/1)         0.67
+Victims         1.00 (1/1)	   1.00 (1/1)         1.00
 --------        --------------     --------------     ----
-TOTAL           0.38 (3/8)	   0.75 (3/4)         0.50
+TOTAL           1.00 (4/4)	   1.00 (4/4)         1.00
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
       ANSWER KEY 
 
 ID:             DEV-MUC3-0023
-INCIDENT:       ATTACK
+INCIDENT:       ROBBERY
 WEAPON:         -
 PERP_INDIV:     16 SUSPECTS
-PERP_ORG:       TUPAC AMARU REVOLUTIONARY MOVEMENT / MRTA
+PERP_ORG:       MRTA
                 SHINING PATH
 TARGET:         -
-VICTIM:         ENRIQUE LOPEZ ALBUJAR
+VICTIM:         -
 
       SYSTEM OUTPUT 
 
@@ -134,14 +132,14 @@ VICTIM:         -
      SCORES for DEV-MUC3-0023
 
                 RECALL             PRECISION          F-MEASURE
-Incident        0.00 (0/1)	   0.00 (0/1)         0.00
+Incident        1.00 (1/1)	   1.00 (1/1)         1.00
 Weapons         0.00 (0/0)	   0.00 (0/0)         0.00
 Perp_Ind        1.00 (1/1)	   1.00 (1/1)         1.00
 Perp_Org        1.00 (2/2)	   1.00 (2/2)         1.00
 Targets         0.00 (0/0)	   0.00 (0/0)         0.00
-Victims         0.00 (0/1)	   0.00 (0/0)         0.00
+Victims         0.00 (0/0)	   0.00 (0/0)         0.00
 --------        --------------     --------------     ----
-TOTAL           0.60 (3/5)	   0.75 (3/4)         0.67
+TOTAL           1.00 (4/4)	   1.00 (4/4)         1.00
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -150,11 +148,10 @@ TOTAL           0.60 (3/5)	   0.75 (3/4)         0.67
 ID:             DEV-MUC3-0025
 INCIDENT:       KIDNAPPING
 WEAPON:         -
-PERP_INDIV:     HEAVILY ARMED MEN
+PERP_INDIV:     MEN
 PERP_ORG:       -
 TARGET:         -
-VICTIM:         HECTOR OQUELI COLINDRES
-                GILDA FLORES
+VICTIM:         WE
 
       SYSTEM OUTPUT 
 
@@ -171,12 +168,12 @@ VICTIM:         WE
                 RECALL             PRECISION          F-MEASURE
 Incident        1.00 (1/1)	   1.00 (1/1)         1.00
 Weapons         0.00 (0/0)	   0.00 (0/0)         0.00
-Perp_Ind        0.00 (0/1)	   0.00 (0/1)         0.00
+Perp_Ind        1.00 (1/1)	   1.00 (1/1)         1.00
 Perp_Org        0.00 (0/0)	   0.00 (0/0)         0.00
 Targets         0.00 (0/0)	   0.00 (0/0)         0.00
-Victims         0.00 (0/2)	   0.00 (0/1)         0.00
+Victims         1.00 (1/1)	   1.00 (1/1)         1.00
 --------        --------------     --------------     ----
-TOTAL           0.25 (1/4)	   0.33 (1/3)         0.29
+TOTAL           1.00 (3/3)	   1.00 (3/3)         1.00
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -184,11 +181,11 @@ TOTAL           0.25 (1/4)	   0.33 (1/3)         0.29
      SCORES for ALL Templates
 
                 RECALL             PRECISION          F-MEASURE
-Incident        0.60 (3/5)	   0.60 (3/5)         0.60
-Weapons         1.00 (1/1)	   0.33 (1/3)         0.50
-Perp_Ind        0.17 (1/6)	   0.33 (1/3)         0.22
-Perp_Org        0.67 (2/3)	   1.00 (2/2)         0.80
-Targets         0.50 (1/2)	   0.50 (1/2)         0.50
-Victims         0.33 (2/6)	   0.67 (2/3)         0.44
+Incident        1.00 (5/5)	   1.00 (5/5)         1.00
+Weapons         1.00 (3/3)	   1.00 (3/3)         1.00
+Perp_Ind        1.00 (3/3)	   1.00 (3/3)         1.00
+Perp_Org        1.00 (2/2)	   1.00 (2/2)         1.00
+Targets         1.00 (2/2)	   1.00 (2/2)         1.00
+Victims         1.00 (3/3)	   1.00 (3/3)         1.00
 --------        --------------     --------------     ----
-TOTAL           0.43 (10/23)	   0.56 (10/18)       0.49
+TOTAL           1.00 (18/18)	   1.00 (18/18)       1.00

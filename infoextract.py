@@ -8,7 +8,9 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
 from pathlib import Path
+
 from findWeapon import findWeapon
+from FindTarget import FindTarget
 
 #Change the path to the stanford ner
 #st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
@@ -75,7 +77,9 @@ def extractInfo(inTextFile):
     for i in range(len(stories)):
         findIncident(stories[i],story_objects[i])
         test = findWeapon(stories[i], story_objects[i])
-    return story_objects
+
+    FindTarget(stories[0],story_objects[0])    
+    return story_objects   
 
 
     #   Stanford NER Tagger

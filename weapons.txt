@@ -47,6 +47,7 @@ cutlass
 dagger
 dart
 depth charge
+dynamite
 epee
 explosive
 firearm
@@ -79,6 +80,8 @@ longsword
 mace
 machete
 machine gun
+machinegun
+machineguns
 magnum
 maul
 mine

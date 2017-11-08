@@ -12,6 +12,7 @@ from pathlib import Path
 from findWeapon import findWeapon
 from FindTarget import FindTarget
 from FindVictim import FindVictim
+from FindPerp import FindPerp
 
 #Change the path to the stanford ner
 #st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
@@ -80,6 +81,7 @@ def extractInfo(inTextFile):
         test = findWeapon(stories[i], story_objects[i])
         FindTarget(stories[i], story_objects[i])
         FindVictim(stories[i],story_objects[i])
+        FindPerp(stories[i],story_objects[i])
 
 
     return story_objects   

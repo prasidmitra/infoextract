@@ -3,7 +3,7 @@ from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
 from nltk.tag import StanfordNERTagger
 from nltk.stem import PorterStemmer
-from FindPerp import FindPerp
+
 
 import spacy
 nlp = spacy.load('en')

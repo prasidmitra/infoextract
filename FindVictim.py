@@ -51,7 +51,7 @@ def FindVictim(story,storyobj):
                 text=token.text
                 break
         noun_phrases=[np.text for np in doc.noun_chunks]
-        if len(text)>0:    
+        if len(text)>0:   
             for i in noun_phrases:
                 np_split = i.split()
                 if text in np_split:

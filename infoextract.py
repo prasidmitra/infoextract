@@ -77,8 +77,9 @@ def extractInfo(inTextFile):
     for i in range(len(stories)):
         findIncident(stories[i],story_objects[i])
         test = findWeapon(stories[i], story_objects[i])
+        FindTarget(stories[i], story_objects[i])
 
-    FindTarget(stories[0],story_objects[0])    
+
     return story_objects   
 
 

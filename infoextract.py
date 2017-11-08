@@ -104,9 +104,6 @@ def checkAccuracy(inTextFile):
         print('No stories found. Somewthing is wrong!')
         return
 
-    count = 0
-    filecount = 0
-    acc = [0,0,0,0,0,0,0]
     with open('output.txt', 'w') as outFile:
         for storyT in storyObjects:
             outFile.write('ID:' + '  ' + storyT.id + '\n')
@@ -119,7 +116,9 @@ def checkAccuracy(inTextFile):
             outFile.write('\n')
     outFile.close()
 
-
+    #count = 0
+    #filecount = 0
+    #acc = [0, 0, 0, 0, 0, 0, 0]
     # while(count<=1300):
     #     testfile='./developset/texts/DEV-MUC3-'+str(count).zfill(4)
     #     ansfile='./developset/answers/DEV-MUC3-'+str(count).zfill(4)+'.anskey'
@@ -174,8 +173,6 @@ def main():
         checkAccuracy(args[1])
     else:
         print('Wrong number of arguments specified!.')
-    #extractInfo(textfile)
-
 
 if __name__ == '__main__':
     main()

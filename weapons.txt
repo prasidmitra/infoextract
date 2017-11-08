@@ -37,6 +37,7 @@ bullet
 bullwhip
 cannon
 carbine
+carbomb
 catapault
 cat o'nine tails
 cleaver
@@ -125,6 +126,7 @@ spiked mace
 stiletto
 stun gun
 submachine gun
+submachinegun
 switchblade
 sword
 tank
@@ -137,6 +139,7 @@ trebuchet
 trident
 tripwire
 truncheon
+tnt
 Uzi
 weapon
 weapon of mass destruction

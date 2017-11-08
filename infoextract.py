@@ -15,13 +15,7 @@ from findWeapon import findWeapon
 
 ps = PorterStemmer()
 
-
-
 # nlp = spacy.load('en')
- 
-
-
-
 
 def findIncident(story,obj):
     incidents = ['arson','attack','bombing','kidnapping','robbery']
@@ -35,17 +29,17 @@ def findIncident(story,obj):
             score[i]+=story_words.count(j)
             #if i == 2:
             #    print(j,story_words.count(j))
-    max = 0
+    maxFreq = 0
     bestindex = 0   
     for i in range(5):
-        if i!=1:
-            if score[i]>max:
+        if i != 1:
+            if score[i]>maxFreq:
                 bestindex = i
-                max = score[i]
-    if max > 0:
-        obj.incident = incidents[bestindex]
+                maxFreq = score[i]
+    if maxFreq > 0:
+        obj.incident = incidents[bestindex].upper()
     else:
-        obj.incident = incidents[1]
+        obj.incident = incidents[1].upper()
           
 
 def findSynonym(word):
@@ -59,29 +53,29 @@ def findSynonym(word):
                 antonyms.append(l.antonyms()[0].name())
     return list(set(synonyms))            
 
-def extractInfo(textfile):
-    stories=[]
-    story_objects=[]
-    f = open(textfile,'r')
-    text = ""
-    for line in f:
-        p = re.match('^((DEV-MUC3|TST1-MUC3|TST2-MUC4)-[0-9]{4})',line)
-        if p:
-            if len(text)!=0:
-                stories.append(text)
-                text=""
-            obj = Template(p.group(),'','','','','','')
-            story_objects.append(obj)
+def extractInfo(inTextFile):
+    stories = []
+    story_objects = []
+    with open(inTextFile) as inputFile:
+        text = ""
+        for line in inputFile:
+            p = re.match('^((DEV-MUC3|TST1-MUC3|TST2-MUC4)-[0-9]{4})',line)
+            if p:
+                if len(text) != 0:
+                    stories.append(text)
+                    text = ""
+                obj = Template(p.group(),'-','-','-','-','-','-')
+                story_objects.append(obj)
 
-        else: 
-            text += line
-    if len(text)!=0:
+            else:
+                text += line.replace('\n', ' ').replace('\r', '')
+    if len(text)!= 0:
         stories.append(text)
 
     for i in range(len(stories)):
         findIncident(stories[i],story_objects[i])
         test = findWeapon(stories[i], story_objects[i])
-    return story_objects[0]   
+    return story_objects
 
 
     #   Stanford NER Tagger
@@ -99,68 +93,84 @@ def extractInfo(textfile):
     #   print(i.text, i.ent_iob,i.ent_type_)   
 
         
-def checkAccuracy():
-    
-    count  = 0
+def checkAccuracy(inTextFile):
+    storyObjects = extractInfo(inTextFile)
+    if not storyObjects:
+        print('No stories found. Somewthing is wrong!')
+        return
+
+    count = 0
     filecount = 0
     acc = [0,0,0,0,0,0,0]
-    while(count<=1300):
-        testfile='./developset/texts/DEV-MUC3-'+str(count).zfill(4)
-        ansfile='./developset/answers/DEV-MUC3-'+str(count).zfill(4)+'.anskey'
-        if Path(testfile).is_file():
-            obj = extractInfo(testfile)
-
-            #incident
-            incident_actual = ''
-
-            f = open(ansfile)
-            for line in f:
-                nline = line.strip().split()
-                if nline[0]=='INCIDENT:':
-                    incident_actual = nline[1].lower()
-                    break
-            f.close()
-
-            incident_pred = obj.incident
-            if incident_pred == incident_actual:
-                acc[1]+=1
-            #print (obj.id,incident_pred, incident_actual)
-            #filecount+=1
-
-            # weapon
-            weapon_actual = ''
-
-            f = open(ansfile)
-            for line in f:
-                nline = line.strip().split()
-                if nline[0] == 'WEAPON:':
-                    wpL = ''
-                    for i in nline[1:]:
-                        wpL += i.lower() + ' '
-                    weapon_actual = wpL.strip()
-                    break
-            f.close()
-
-            weapon_pred = obj.weapon
-            if weapon_pred == weapon_actual:
-                acc[2] += 1
-            print(obj.id, weapon_pred, weapon_actual)
-            filecount += 1
-        count+=1
-
-    print('incident accuracy = ', acc[1]/filecount)
-    print('weapon accuracy = ', acc[2] / filecount)
+    with open('output.txt', 'w') as outFile:
+        for storyT in storyObjects:
+            outFile.write('ID:' + '  ' + storyT.id + '\n')
+            outFile.write('INCIDENT:' + '  ' + storyT.incident + '\n')
+            outFile.write('WEAPON:' + '  ' + storyT.weapon + '\n')
+            outFile.write('PERP INDIV:' + '  ' + storyT.indiv + '\n')
+            outFile.write('PERP ORG:' + '  ' + storyT.org + '\n')
+            outFile.write('TARGET:' + '  ' + storyT.target + '\n')
+            outFile.write('VICTIM:' + '  ' + storyT.victim + '\n')
+            outFile.write('\n')
+    outFile.close()
 
 
+    # while(count<=1300):
+    #     testfile='./developset/texts/DEV-MUC3-'+str(count).zfill(4)
+    #     ansfile='./developset/answers/DEV-MUC3-'+str(count).zfill(4)+'.anskey'
+    #     if Path(testfile).is_file():
+    #         obj = extractInfo(testfile)
+    #
+    #         #incident
+    #         incident_actual = ''
+    #
+    #         f = open(ansfile)
+    #         for line in f:
+    #             nline = line.strip().split()
+    #             if nline[0]=='INCIDENT:':
+    #                 incident_actual = nline[1].lower()
+    #                 break
+    #         f.close()
+    #
+    #         incident_pred = obj.incident
+    #         if incident_pred == incident_actual:
+    #             acc[1]+=1
+    #         #print (obj.id,incident_pred, incident_actual)
+    #         #filecount+=1
+    #
+    #         # weapon
+    #         weapon_actual = ''
+    #
+    #         f = open(ansfile)
+    #         for line in f:
+    #             nline = line.strip().split()
+    #             if nline[0] == 'WEAPON:':
+    #                 wpL = ''
+    #                 for i in nline[1:]:
+    #                     wpL += i.lower() + ' '
+    #                 weapon_actual = wpL.strip()
+    #                 break
+    #         f.close()
+    #
+    #         weapon_pred = obj.weapon
+    #         if weapon_pred == weapon_actual:
+    #             acc[2] += 1
+    #         print(obj.id, weapon_pred, weapon_actual)
+    #         filecount += 1
+    #     count+=1
+    #
+    # print('incident accuracy = ', acc[1]/filecount)
+    # print('weapon accuracy = ', acc[2] / filecount)
 
 
 def main():
-    #args=sys.argv
-    #textfile = './developset/texts/DEV-MUC3-0006'
-    #textfile = './developset/texts/sample1.txt'
-    checkAccuracy()
-
+    args = sys.argv
+    if len(args) == 2:
+        checkAccuracy(args[1])
+    else:
+        print('Wrong number of arguments specified!.')
     #extractInfo(textfile)
+
 
 if __name__ == '__main__':
     main()

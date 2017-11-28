@@ -28,6 +28,7 @@ blowgun
 blowpipe
 bludgeon
 bomb
+bombs
 boobytrap
 boomerang
 bow and arrow
@@ -80,12 +81,11 @@ longbow
 longsword
 mace
 machete
-machine gun
+machine-gun
 machinegun
 machineguns
 magnum
 maul
-mine
 missile
 morning star
 mortar

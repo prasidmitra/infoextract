@@ -1,13 +1,10 @@
 import sys
 import re
 from Template import Template
-#import spacy
 from nltk.corpus import wordnet as wn
 from nltk.stem import PorterStemmer
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.tag import StanfordNERTagger
 from nltk.tokenize import word_tokenize
-from pathlib import Path
+
 
 from findWeapon import findWeapon
 from FindTarget import FindTarget
@@ -19,9 +16,6 @@ from FindOrg import FindOrg
 #st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
 
 ps = PorterStemmer()
-
-# nlp = spacy.load('en')
-
 def findIncident(story,obj):
     incidents = ['arson','attack','bombing','kidnapping','robbery']
     incidents_synonyms = []
@@ -86,31 +80,15 @@ def extractInfo(inTextFile):
         FindOrg(stories[i],story_objects[i])
 
 
-    return story_objects   
+    return story_objects
 
-
-    #   Stanford NER Tagger
-    #print(st.tag(word_tokenize(stories[0])))   
-
-
-    # for i in range(len(stories)):
-    #   print(story_objects[i].id+'\n----------')
-    #   print(ne_chunk(pos_tag(word_tokenize(stories[i])))) 
-
-    # doc = nlp(stories[0])
-    # for i in doc.ents:
-    #     print(i.label_, i.text)
-    # for i in doc:
-    #   print(i.text, i.ent_iob,i.ent_type_)   
-
-        
 def checkAccuracy(inTextFile):
     storyObjects = extractInfo(inTextFile)
     if not storyObjects:
         print('No stories found. Somewthing is wrong!')
         return
 
-    with open('output.txt', 'w') as outFile:
+    with open(inTextFile + '.templates', 'w') as outFile:
         for storyT in storyObjects:
             outFile.write('ID:' + '  ' + storyT.id + '\n')
             outFile.write('INCIDENT:' + '  ' + storyT.incident + '\n')

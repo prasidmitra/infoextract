@@ -1,7 +1,5 @@
-from nltk.parse.stanford import StanfordDependencyParser
 from nltk.tokenize import word_tokenize
 from nltk.tokenize import sent_tokenize
-from nltk.tag import StanfordNERTagger
 from nltk.stem import PorterStemmer
 
 
@@ -11,25 +9,10 @@ ps = PorterStemmer()
 
 seedwords = ['attack','attacked','bomb','bombed','grenade','destroyed','destroy']
 
-#dep_parser=StanfordDependencyParser(model_path="edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
-#st = StanfordNERTagger('/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/classifiers/english.all.3class.distsim.crf.ser.gz','/Users/prasidmitra/Downloads/stanford/stanford-ner-2017-06-09/stanford-ner.jar',encoding='utf-8')
 def FindOrg(story,storyobj):
     sentences = sent_tokenize(story)
     index =0
     for s in sentences:
-        # s.replace('\n',' ').replace('\r','')
-        # doc = nlp(s)
-        # print('*********')
-        # noun_phrases=[np.text for np in doc.noun_chunks]
-        # depend = [token.text+' '+token.dep_ for token in doc]
-        # print(noun_phrases)
-        # print('*********')
-        # print(depend)
-        # print('*********')
-        # print(st.tag(word_tokenize(s)))
-        # print('____________________________________________')
-        # result = [list(i.triples()) for i in dep_parser.raw_parse(s)]
-        # print(result)
         flag =0
         count=0
         for word in seedwords:
